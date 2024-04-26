@@ -11,7 +11,7 @@ const Navbar = () => {
           <a className='hover:font-bol' href="">About</a>
         </li>
       </ul>
-        Navbar
+        
         </nav>
   )
 }
