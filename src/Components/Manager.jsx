@@ -7,7 +7,7 @@ const Manager = () => {
         <div class="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
       </div>
 
-      <div className="mx-auto bg-slate-800 max-w-4xl">
+      <div className="bg-slate-50 mycontainer">
         <h1>PasswordManager</h1>
         <p>Your own password manager</p>
         <div className="text-white flex flex-col p-4">
@@ -23,3 +23,4 @@ const Manager = () => {
 };
 
 export default Manager;
+
