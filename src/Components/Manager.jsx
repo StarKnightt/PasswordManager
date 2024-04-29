@@ -12,11 +12,12 @@ const Manager = () => {
         <span className='text-green-600'> &lt;</span>
         Lock<span className='text-green-600'>  Magic/&gt;</span></h1>
         <p className="text-green-900 text-lg text-center">Your Trusted Guardian in the Digital World</p>
-        <div className="text-white flex flex-col p-4">
-          <input className="rounded-full border border-green-500 w-full" type="text" name="" id="" />
-          <div className="flex">
-            <input type="text" />
-            <input type="text" />
+        <div className="text-white flex flex-col p-4 text-black gap-8">
+          <input className="rounded-full border border-green-500 w-full p-4 py-1" type="text" name="" id="" />
+          <div className="flex w-full justify-between gap-8">
+          <input className="rounded-full border border-green-500 w-full p-4 py-1" type="text" name="" id="" />
+          <input className="rounded-full border border-green-500 w-full p-4 py-1" type="text" name="" id="" />
+
           </div>
         </div>
       </div>
@@ -25,4 +26,3 @@ const Manager = () => {
 };
 
 export default Manager;
-
