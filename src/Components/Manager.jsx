@@ -8,10 +8,12 @@ const Manager = () => {
       </div>
 
       <div className="bg-slate-50 mycontainer">
-        <h1>PasswordManager</h1>
-        <p>Your own password manager</p>
+        <h1 className="text-4xl text font-bold text-center">  
+        <span className='text-green-600'> &lt;</span>
+        Lock<span className='text-green-600'>  Magic/&gt;</span></h1>
+        <p className="text-green-900 text-lg text-center">Your Trusted Guardian in the Digital World</p>
         <div className="text-white flex flex-col p-4">
-          <input className="rounded-full" type="text" name="" id="" />
+          <input className="rounded-full border border-green-500 w-full" type="text" name="" id="" />
           <div className="flex">
             <input type="text" />
             <input type="text" />

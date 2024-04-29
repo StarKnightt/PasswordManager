@@ -7,9 +7,7 @@ const Navbar = () => {
 
       <div className="logo font-bold text-white text-2xl">
         <span className='text-green-600'> &lt;</span>
-        PassOP
-        <span className='text-green-600'>  / &gt;</span>
-            
+        Lock<span className='text-green-600'>  Magic/&gt;</span>
         </div>
       <ul>
         <li className='flex gap-4'>
@@ -26,4 +24,3 @@ const Navbar = () => {
 
 export default Navbar
 
-   
