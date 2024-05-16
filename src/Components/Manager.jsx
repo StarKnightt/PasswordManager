@@ -3,6 +3,7 @@ import { useRef, useState, useEffect } from "react";
 
 const Manager = () => {
   const ref = useRef()
+  const passwordRef = useRef()
   const [form, setform] = useState({ site: "", username: "", password: "" })
   const [passwordArray, setpasswordArray] = useState([])
 
@@ -16,12 +17,14 @@ const Manager = () => {
 
 
   const showPassword = () => {
-    alert("show the password");
+    passwordRef.current.type = "text"
     console.log(ref.current.src)
     if (ref.current.src.includes("icons/eyecross.png")) {
       ref.current.src = "icons/eye.png"
+      passwordRef.current.type = "password"
     }
     else {
+      passwordRef.current.type = "text"
       ref.current.src = "icons/eyecross.png"
     }
   }
@@ -57,7 +60,7 @@ const Manager = () => {
             <input value={form.username} onChange={handleChange} placeholder="Enter UserName" className="rounded-full border border-green-500 w-full p-4 py-1" type="text" name="username" id="" />
 
             <div className="relative">
-              <input value={form.password} onChange={handleChange} placeholder="Enter Password" className="rounded-full border border-green-500 w-full p-4 py-1" type="text" name="password" id="" />
+              <input ref={passwordRef} value={form.password} onChange={handleChange} placeholder="Enter Password" className="rounded-full border border-green-500 w-full p-4 py-1" type="password" name="password" id="" />
 
 
               <span className="absolute right-[3px] top-[4px] cursor-pointer " onClick={showPassword}>
@@ -106,3 +109,5 @@ const Manager = () => {
 };
 
 export default Manager;
+
+// Will create the copy button tomorrow
