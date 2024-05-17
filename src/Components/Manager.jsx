@@ -77,7 +77,6 @@ const Manager = () => {
             </lord-icon>
             Add Password</button>
         </div>
-
         <div className="passwords">
           <h2 className="font-bold text-2xl py-4">Your Passwords</h2>
           {passwordArray.length === 0 && <div> No Passwords to show </div>}
