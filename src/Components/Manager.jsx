@@ -147,6 +147,3 @@ const Manager = () => {
 };
 
 export default Manager;
-
-
-// Will create the copy button tomorrow
