@@ -1,5 +1,8 @@
 import React from "react";
 import { useRef, useState, useEffect } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { v4 as uuidv4 } from 'uuid';
 
 const Manager = () => {
   const ref = useRef()
@@ -16,6 +19,16 @@ const Manager = () => {
   }, [])
 
   const copyText = (text) => {
+    toast('Successfully copied to the clipboard!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
     navigator.clipboard.writeText(text)
   }
 
@@ -33,9 +46,16 @@ const Manager = () => {
   }
 
   const savePassword = () => {
-    setpasswordArray([...passwordArray, form])
-    localStorage.setItem("password", JSON.stringify([...passwordArray, form]))
+    setpasswordArray([...passwordArray, {...form, id:uuidv4()}])
+    localStorage.setItem("passwords", JSON.stringify([...passwordArray, {...form, id:uuidv4()}]))
     console.log([...passwordArray, form])
+  }
+
+  const deletePassword = (id) => {
+    console.log ("Deleting password with ID", id)
+    // setpasswordArray([...passwordArray, {...form, id:uuidv4}])
+    // localStorage.setItem("password", JSON.stringify([...passwordArray, form]))
+    // console.log([...passwordArray, form])
   }
 
   const handleChange = (e) => {
@@ -44,6 +64,21 @@ const Manager = () => {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition="Bounce"
+      />
+      {/* Same as */}
+      <ToastContainer />
       <div className="absolute top-0 -z-10 h-full w-full bg-white">
         <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(109,244,123,0.5)] opacity-50 blur-[80px]"></div>
       </div>
@@ -77,7 +112,7 @@ const Manager = () => {
               src="https://cdn.lordicon.com/jgnvfzqg.json"
               trigger="hover" >
             </lord-icon>
-            Add Password</button>
+            Save Password</button>
         </div>
 
         <div className="passwords">
@@ -89,6 +124,7 @@ const Manager = () => {
                 <th className="py-2">Site</th>
                 <th className="py-2">Username</th>
                 <th className="py-2">Password</th>
+                <th className="py-2">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-green-100">
@@ -134,6 +170,19 @@ const Manager = () => {
                       </div>
                     </div>
                   </td>
+
+                  <td className="justify-center py-2 border-white text-center">
+                    <span className="cursor-pointer mx-1" onClick={()=>editPassword(item.id)}><lord-icon
+                      style={{ "width": "25px", "height": "25px", "paddingTop": "3px", "paddingLeft": "3px" }}
+                      src="https://cdn.lordicon.com/gwlusjdu.json"
+                      trigger="hover" >
+                    </lord-icon></span>
+                    <span className="cursor-pointer mx-1" onClick={()=>deletePassword(item.id)}><lord-icon
+                      style={{ "width": "25px", "height": "25px", "paddingTop": "3px", "paddingLeft": "3px" }}
+                      src="https://cdn.lordicon.com/skkahier.json"
+                      trigger="hover" >
+                    </lord-icon></span>
+                  </td>
                 </tr>
               })}
 
@@ -147,3 +196,4 @@ const Manager = () => {
 };
 
 export default Manager;
+
