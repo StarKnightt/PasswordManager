@@ -105,7 +105,7 @@ const Manager = () => {
         <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(109,109,244,0.5)] opacity-50 blur-[80px]"></div>
       </div>
 
-      <div className="mycontainer">
+      <div className="p-2 md:p-0 md:mycontainer min-h-[88.2vh]">
         <h1 className="text-4xl font-bold text-center">
           <span className="text-blue-500"> &lt;</span>
           Lock<span className="text-blue-500"> Magic/&gt;</span>
@@ -120,9 +120,10 @@ const Manager = () => {
             className="rounded-full border border-blue-500 w-full p-4 py-1"
             type="text"
             name="site"
+            id="site"
           />
 
-          <div className="flex w-full justify-between gap-8">
+          <div className="flex flex-col md:flex-row w-full justify-between gap-8">
             <input
               value={form.username}
               onChange={handleChange}
@@ -130,6 +131,7 @@ const Manager = () => {
               className="rounded-full border border-blue-500 w-full p-4 py-1"
               type="text"
               name="username"
+              id="username"
             />
 
             <div className="relative">
@@ -141,6 +143,7 @@ const Manager = () => {
                 className="rounded-full border border-blue-500 w-full p-4 py-1"
                 type="password"
                 name="password"
+                id="password"
               />
               <span className="absolute right-[3px] top-[4px] cursor-pointer" onClick={showPassword}>
                 <img ref={ref} className="p-1" width={26} src="icons/eye.png" alt="eye" />
