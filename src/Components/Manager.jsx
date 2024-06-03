@@ -41,22 +41,35 @@ const Manager = () => {
   };
 
   const savePassword = () => {
-    const newPassword = { ...form, id: uuidv4() };
-    setPasswordArray([...passwordArray, newPassword]);
-    localStorage.setItem("passwords", JSON.stringify([...passwordArray, newPassword]));
-    setForm({ site: "", username: "", password: "" });
-    toast('Password Saved!', {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    if (form.site.length > 3 && form.username.length > 3 && form.password.length > 3) {
+      const newPassword = { ...form, id: uuidv4() };
+      setPasswordArray([...passwordArray, newPassword]);
+      localStorage.setItem("passwords", JSON.stringify([...passwordArray, newPassword]));
+      setForm({ site: "", username: "", password: "" });
+      toast('Password Saved!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast('Error: Password not saved Ensure all fields are longer than 3 characters.', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
-
+  
   const deletePassword = (id) => {
     if (confirm("Do you really want to delete this password?")) {
       const updatedPasswords = passwordArray.filter(item => item.id !== id);
@@ -105,7 +118,7 @@ const Manager = () => {
         <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(109,109,244,0.5)] opacity-50 blur-[80px]"></div>
       </div>
 
-      <div className="p-2 md:p-0 md:mycontainer min-h-[88.2vh]">
+      <div className="p-3 md:mycontainer min-h-[88.2vh]">
         <h1 className="text-4xl font-bold text-center">
           <span className="text-blue-500"> &lt;</span>
           Lock<span className="text-blue-500"> Magic/&gt;</span>
@@ -164,7 +177,7 @@ const Manager = () => {
           {passwordArray.length === 0 ? (
             <div>No Passwords to show</div>
           ) : (
-            <table className="table-auto w-full rounded-md overflow-hidden">
+            <table className="table-auto w-full rounded-md overflow-hidden mb-10">
               <thead className="bg-blue-800 text-white">
                 <tr>
                   <th className="py-2">Site</th>
@@ -240,3 +253,5 @@ const Manager = () => {
 };
 
 export default Manager;
+
+
