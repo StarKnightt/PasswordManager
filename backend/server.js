@@ -44,6 +44,25 @@ client.connect().then(() => {
     }
   });
 
+  // Update a password by id
+  app.put('/:id', async (req, res) => {
+    try {
+      const id = req.params.id;
+      const updatedPassword = req.body;
+      const updateResult = await collection.updateOne(
+        { _id: new ObjectId(id) },
+        { $set: updatedPassword }
+      );
+      if (updateResult.matchedCount === 1) {
+        res.send({ success: true, message: 'Password updated successfully' });
+      } else {
+        res.status(404).send({ success: false, message: 'Password not found' });
+      }
+    } catch (error) {
+      res.status(500).json({ success: false, message: error.message });
+    }
+  });
+
   // Delete a password by id
   app.delete('/:id', async (req, res) => {
     try {
@@ -58,7 +77,6 @@ client.connect().then(() => {
       res.status(500).json({ success: false, message: error.message });
     }
   });
-
   app.listen(port, () => {
     console.log(`Example app listening on http://localhost:${port}`);
   });

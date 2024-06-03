@@ -17,14 +17,11 @@ const Manager = () => {
       setPasswordArray(passwords);
     } catch (error) {
       console.error("Error fetching passwords:", error);
-    } 
+    }
   };
-  
-
 
   useEffect(() => {
     getPasswords()
-
   }, []);
 
   const copyText = (text) => {
@@ -53,17 +50,24 @@ const Manager = () => {
 
   const savePassword = async () => {
     if (form.site.length > 3 && form.username.length > 3 && form.password.length > 3) {
+      const newPassword = { ...form, id: uuidv4() };
 
       // if any such id exists in the db, delete it
-      await fetch("http://localhost:3000/", {method:"DELETE", headers: {"Content-Type":"application/json"},
-      body:JSON.stringify({id:form.id }) })
+      await fetch("http://localhost:3000/", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: form.id })
+      });
 
-      const newPassword = { ...form, id: uuidv4() };
-      await fetch("http://localhost:3000/", {method:"POST", headers: {"Content-Type":"application/json"},
-    body:JSON.stringify({...form,id:uuidv4() }) })
+      await fetch("http://localhost:3000/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newPassword)
+      });
+
       setPasswordArray([...passwordArray, newPassword]);
-      // localStorage.setItem("passwords", JSON.stringify([...passwordArray, newPassword]));
       setForm({ site: "", username: "", password: "" });
+
       toast('Password Saved!', {
         position: "top-center",
         autoClose: 5000,
@@ -75,7 +79,7 @@ const Manager = () => {
         theme: "light",
       });
     } else {
-      toast('Error: Password not saved Ensure all fields are longer than 3 characters.', {
+      toast('Error: Password not saved. Ensure all fields are longer than 3 characters.', {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -92,9 +96,13 @@ const Manager = () => {
     if (confirm("Do you really want to delete this password?")) {
       const updatedPasswords = passwordArray.filter(item => item.id !== id);
       setPasswordArray(updatedPasswords);
-      // localStorage.setItem("passwords", JSON.stringify(updatedPasswords));
-      let res = await fetch("http://localhost:3000/", {method:"DELETE", headers: {"Content-Type":"application/json"},
-      body:JSON.stringify({id }) })
+
+      await fetch("http://localhost:3000/", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id })
+      });
+
       toast('Password Deleted successfully!', {
         position: "top-center",
         autoClose: 5000,
@@ -107,12 +115,20 @@ const Manager = () => {
       });
     }
   };
+
   const editPassword = (id) => {
     const passwordToEdit = passwordArray.find(item => item.id === id);
     setForm(passwordToEdit);
     const updatedPasswords = passwordArray.filter(item => item.id !== id);
     setPasswordArray(updatedPasswords);
   };
+
+
+
+  //  const editPassword = (id) => {
+  //       setform({ ...passwordArray.filter(i => i.id === id)[0], id: id })
+  //       setPasswordArray(passwordArray.filter(item => item.id !== id))
+  //   } 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -131,7 +147,6 @@ const Manager = () => {
         draggable
         pauseOnHover
         theme="light"
-        transition:Bounce
       />
       <div className="absolute top-0 -z-10 h-full w-full bg-white">
         <div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(109,109,244,0.5)] opacity-50 blur-[80px]"></div>
@@ -272,5 +287,3 @@ const Manager = () => {
 };
 
 export default Manager;
-
-
