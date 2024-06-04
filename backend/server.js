@@ -13,7 +13,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.json()); // Use express's built-in body parser
-app.use(cors()); // Enable CORS
+app.use(cors({ origin: '*' })); // Enable CORS
 
 client.connect().then(() => {
   console.log("Connected successfully to MongoDB");
