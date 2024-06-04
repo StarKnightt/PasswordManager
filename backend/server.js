@@ -13,7 +13,15 @@ const app = express();
 const port = 3000;
 
 app.use(express.json()); // Use express's built-in body parser
-app.use(cors({ origin: ['https://password-manager-git-main-starknightts-projects.vercel.app', 'http://localhost:3000'] }));
+// app.use(cors({ origin: ['https://password-manager-git-main-starknightts-projects.vercel.app','http://localhost:3000'] }));
+
+app.use(
+  cors({
+    origin:["https://password-manager-git-main-starknightts-projects.vercel.app/"],
+    methods:["GET", "POST", "PUT", "DELETE"],
+    credentials:true,
+  })
+)
 
 client.connect().then(() => {
   console.log("Connected successfully to MongoDB");
