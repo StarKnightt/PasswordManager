@@ -3,14 +3,13 @@ const dotenv = require('dotenv');
 const { MongoClient, ObjectId } = require('mongodb');
 const cors = require('cors');
 
-dotenv.config();
+dotenv.config();  // Ensure this is at the very top
 
 // Connection URL
-const url = process.env.MONGO_URI;
-const client = new MongoClient(url);
-
+const url = process.env.MONGO_URI;  // This line uses the environment variable
+const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
 // Database Name
-const dbName = 'LockMagic';
+const dbName = 'LockMagic';  // This should match the database name in your connection string
 const app = express();
 const port = 3000;
 
