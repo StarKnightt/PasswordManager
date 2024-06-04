@@ -32,7 +32,7 @@ This is a simple password manager web application that allows users to securely 
 
 ## Demo Video
 
-[Add screenshots of your application here]
+<video controls src="AwesomeScreenshot-30_5_2024,8 44 01pm.mp4" title="Title"></video>
 
 ## Contributing
 
