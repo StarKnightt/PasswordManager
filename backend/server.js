@@ -10,7 +10,7 @@ const port = 3000;
 
 app.use(express.json()); // Use express's built-in body parser
 app.use(cors({ origin: '*' })); // Enable CORS
-app.use(cors({ origin: 'https://password-manager-git-main-starknightts-projects.vercel.app/' }))
+// app.use(cors({ origin: 'https://password-manager-git-main-starknightts-projects.vercel.app/' }))
 
 // MongoDB connection
 const uri = process.env.MONGO_URI;
