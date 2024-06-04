@@ -1,32 +1,27 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const { MongoClient, ObjectId } = require('mongodb');
+const { MongoClient } = require('mongodb');
 const cors = require('cors');
 
-dotenv.config();  // Ensure this is at the very top
-// Connection URL
-const url = process.env.MONGO_URI;  // This line uses the environment variable
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
-// Database Name
-const dbName = 'LockMagic';  // This should match the database name in your connection string
+dotenv.config(); // Ensure this is at the very top
+
 const app = express();
 const port = 3000;
 
 app.use(express.json()); // Use express's built-in body parser
-// app.use(cors({ origin: ['https://password-manager-git-main-starknightts-projects.vercel.app','http://localhost:3000'] }));
+app.use(cors({ origin: '*' })); // Enable CORS
 
-app.use(
-  cors({
-    origin:["https://password-manager-git-main-starknightts-projects.vercel.app/"],
-    methods:["GET", "POST", "PUT", "DELETE"],
-    credentials:true,
-  })
-)
+// MongoDB connection
+const uri = process.env.MONGO_URI;
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 client.connect().then(() => {
   console.log("Connected successfully to MongoDB");
 
-  const db = client.db(dbName);
+  // Get the database instance
+  const db = client.db('LockMagic'); // Replace 'LockMagic' with your actual database name
+
+  // Get the collection
   const collection = db.collection('passwords');
 
   // Get all the passwords
@@ -64,6 +59,7 @@ client.connect().then(() => {
       res.status(500).json({ success: false, message: error.message });
     }
   });
+
   app.listen(port, () => {
     console.log(`Example app listening on http://localhost:${port}`);
   });
