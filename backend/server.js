@@ -4,7 +4,6 @@ const { MongoClient, ObjectId } = require('mongodb');
 const cors = require('cors');
 
 dotenv.config();  // Ensure this is at the very top
-
 // Connection URL
 const url = process.env.MONGO_URI;  // This line uses the environment variable
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
