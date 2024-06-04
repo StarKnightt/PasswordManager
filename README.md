@@ -1,6 +1,6 @@
 # Password Manager
 
-This is a simple password manager web application that allows users to securely store and manage their passwords for various accounts.
+This is a simple password manager web application that allows users to securely store and manage their passwords for various accounts. ( This project is only for educational purposes, you can try this, Don't save your real passwords here)
 
 ## Features
 
@@ -30,7 +30,7 @@ This is a simple password manager web application that allows users to securely 
 5. Run the frontend development server: `npm start` (inside the frontend directory)
 6. Open the browser and go to `http://localhost:3000` to access the application.
 
-## Screenshots
+## Demo Video
 
 [Add screenshots of your application here]
 
@@ -42,5 +42,4 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 
 - [StarKnightt](https://github.com/StarKnightt) - Creator
 - [Synchrotek](https://github.com/Synchrotek) - Contributor
-
 
