@@ -53,10 +53,9 @@ const Manager = () => {
       const newPassword = { ...form, id: uuidv4() };
 
       // if any such id exists in the db, delete it
-      await fetch("http://localhost:3000/", {
+      await fetch(`http://localhost:3000/${form.id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: form.id })
       });
 
       await fetch("http://localhost:3000/", {
