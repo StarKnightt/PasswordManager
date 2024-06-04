@@ -97,10 +97,9 @@ const Manager = () => {
       const updatedPasswords = passwordArray.filter(item => item.id !== id);
       setPasswordArray(updatedPasswords);
 
-      await fetch("http://localhost:3000/", {
+      await fetch(`http://localhost:3000/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id })
       });
 
       toast('Password Deleted successfully!', {
