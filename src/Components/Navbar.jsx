@@ -18,7 +18,7 @@ const Navbar = () => {
         </ul> */}
         <button className='flex items-center justify-center h-11 px-4 mx-2 rounded-full border border-gray-300 bg-transparent text-white hover:bg-gray-700 hover:border-gray-500'>
           <img className='w-6 h-6 mr-2 invert' src="/icons/github.svg" alt="GitHub Logo" />
-          <span className='font-semibold'>GitHub</span>
+      <a href="https://github.com/StarKnightt/PasswordManager"><span className='font-semibold'>GitHub</span></a>
         </button>
       </div>
     </nav>
