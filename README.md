@@ -19,7 +19,7 @@ This is a simple password manager web application that allows users to securely 
 
 ## Demo
 
-[Live Demo](https://password-manager-fq1x2k9ld-starknightts-projects.vercel.app/)
+[Live Demo](https://password-manager-git-main-starknightts-projects.vercel.app/)
 
 ## Setup Instructions
 
