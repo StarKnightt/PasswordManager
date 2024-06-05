@@ -58,7 +58,7 @@ const Manager = () => {
         headers: { "Content-Type": "application/json" },
       });
 
-      await fetch($`{import.mete.env.VITE_BACKEND_URL}`, {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPassword)
