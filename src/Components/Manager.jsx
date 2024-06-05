@@ -8,7 +8,7 @@ const Manager = () => {
   const passwordRef = useRef();
   const [form, setForm] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
- 
+
   const getPasswords = async () => {
     try {
       let req = await fetch(`${import.meta.env.VITE_BACKEND_URL}`);
@@ -96,7 +96,7 @@ const Manager = () => {
       const updatedPasswords = passwordArray.filter(item => item.id !== id);
       setPasswordArray(updatedPasswords);
 
-      await fetch($`{import.meta.env.VITE_BACKEND_URL}${id}`, {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -133,7 +133,7 @@ const Manager = () => {
   };
 
   return (
-    <> 
+    <>
       <ToastContainer
         position="top-right"
         autoClose={5000}
