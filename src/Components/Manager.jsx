@@ -8,10 +8,10 @@ const Manager = () => {
   const passwordRef = useRef();
   const [form, setForm] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
-
+ 
   const getPasswords = async () => {
     try {
-      let req = await fetch("http://localhost:3000");
+      let req = await fetch(`${import.meta.env.VITE_BACKEND_URL}`);
       let passwords = await req.json();
       console.log(passwords);
       setPasswordArray(passwords);
@@ -53,12 +53,12 @@ const Manager = () => {
       const newPassword = { ...form, id: uuidv4() };
 
       // if any such id exists in the db, delete it
-      await fetch(`http://localhost:3000/${form.id}`, {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/${form.id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
 
-      await fetch("http://localhost:3000/", {
+      await fetch($`{import.mete.env.VITE_BACKEND_URL}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPassword)
@@ -96,7 +96,7 @@ const Manager = () => {
       const updatedPasswords = passwordArray.filter(item => item.id !== id);
       setPasswordArray(updatedPasswords);
 
-      await fetch(`http://localhost:3000/${id}`, {
+      await fetch($`{import.meta.env.VITE_BACKEND_URL}${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
@@ -133,7 +133,7 @@ const Manager = () => {
   };
 
   return (
-    <>
+    <> 
       <ToastContainer
         position="top-right"
         autoClose={5000}
