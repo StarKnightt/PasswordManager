@@ -9,6 +9,9 @@ const Manager = () => {
   const [form, setForm] = useState({ site: "", username: "", password: "" });
   const [passwordArray, setPasswordArray] = useState([]);
 
+
+  // We used fetch API here and importing passwords from backend.
+
   const getPasswords = async () => {
     try {
       let req = await fetch(`${import.meta.env.VITE_BACKEND_URL}`);
@@ -38,6 +41,8 @@ const Manager = () => {
     navigator.clipboard.writeText(text);
   };
 
+
+  //  it is used for show password functionallity ( toggle)
   const showPassword = () => {
     if (passwordRef.current.type === "password") {
       ref.current.src = "icons/eyecross.png";
@@ -48,6 +53,7 @@ const Manager = () => {
     }
   };
 
+  // To put atleast 3 characters in every section
   const savePassword = async () => {
     if (
       form.site.length > 3 &&
@@ -121,17 +127,14 @@ const Manager = () => {
     }
   };
 
+
+//  Edit password function
   const editPassword = (id) => {
     const passwordToEdit = passwordArray.find((item) => item.id === id);
     setForm(passwordToEdit);
-    const updatedPasswords = passwordArray.filter((item) => item.id !== id);
+    const updatedPasswords = passwordArray.filter((item) =>   item.id !== id);
     setPasswordArray(updatedPasswords);
   };
-
-  //  const editPassword = (id) => {
-  //       setform({ ...passwordArray.filter(i => i.id === id)[0], id: id })
-  //       setPasswordArray(passwordArray.filter(item => item.id !== id))
-  //   }
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -174,7 +177,6 @@ const Manager = () => {
             name="site"
             id="site"
           />
-
           <div className="flex flex-col md:flex-row w-full justify-between gap-8">
             <input
               value={form.username}
