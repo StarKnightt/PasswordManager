@@ -127,7 +127,6 @@ const Manager = () => {
     }
   };
 
-
 //  Edit password function
   const editPassword = (id) => {
     const passwordToEdit = passwordArray.find((item) => item.id === id);
